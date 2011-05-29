@@ -1,4 +1,8 @@
 #include <iostream>
+#include <glibtop.h>
+#include <glibtop/cpu.h>
+#include <glibtop/mem.h>
+#include <glibtop/proclist.h>
 #include "sysinfo.h"
 
 using namespace std;
