@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1306174833 source:/home/xtephan/eal/server/sysinfo/sysinfo.cpp
+	"sysinfo.h"
+	<iostream>
+	<fstream>
+	<string.h>
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+
+1306174866 /home/xtephan/eal/server/sysinfo/sysinfo.h
+
+1306141483 source:/home/xtephan/eal/server/sysinfo/main.cpp
+	<iostream>
+	"sysinfo.h"
+
