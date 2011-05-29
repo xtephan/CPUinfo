@@ -175,6 +175,19 @@ void sysinfo::ps_show( char name[] ) {
 
 }
 
+
+void sysinfo::kill_ps( char id[] ) {
+
+    char cmd[64];
+
+    strcpy(cmd,"kill -9 ");
+    strcat(cmd,id);
+
+    system(cmd);
+
+}
+
+
 void sysinfo::menu(){
 
     while (true) {
@@ -196,20 +209,24 @@ void sysinfo::menu(){
 
         switch(x) {
 
+            // exit
             case '0': {
                  std::cout<<"Bye, Bye!";
                  exit(1);
                  break;
             }
 
+            //CPU detailed
             case '1': {
                  cpu_detailes(); break;
             }
 
+            //show proccess
             case '3': {
                  ps_show(); break;
             }
 
+            //show proccess grep
             case '4': {
 
                 char tmp[64];
@@ -220,6 +237,20 @@ void sysinfo::menu(){
                  break;
             }
 
+
+            //kill
+            case '5': {
+
+                char tmp[8];
+
+                std::cout<<"Enter proccess ID: ";
+                std::cin>>tmp;
+                kill_ps( tmp );
+                 break;
+            }
+
+
+            //anything else
             default: {
                 std::cout<<"You have entered something outside the menu!"<<std::endl;
                 std::cout<<"Congrats! You have discovered the following easteregg:"<<std::endl;

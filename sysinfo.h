@@ -23,6 +23,7 @@ class sysinfo
         void cpu_detailes(); //displays detailed informations about the CPU
         void ps_show(); //displays running procceses
         void ps_show( char name[] ); //displays running procceses
+        void kill_ps( char id[] ); //displays running procceses
 };
 
 #endif
