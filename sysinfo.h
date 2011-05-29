@@ -22,6 +22,7 @@ class sysinfo
         char *get_date();
         void cpu_detailes(); //displays detailed informations about the CPU
         void ps_show(); //displays running procceses
+        void ps_show( char name[] ); //displays running procceses
 };
 
 #endif

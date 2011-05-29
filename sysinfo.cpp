@@ -5,6 +5,7 @@
 #include <unistd.h>    //get username informations
 #include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 sysinfo::sysinfo()
@@ -146,7 +147,29 @@ void sysinfo::ps_show() {
     FILE *fp = popen("ps aux", "r" );
 
     char buff[128];
-    fgets( buff, sizeof buff, fp );
+
+    while ( fgets( buff, sizeof buff, fp ) )
+        std::cout<<buff;
+
+    pclose( fp );
+
+}
+
+
+void sysinfo::ps_show( char name[] ) {
+
+    char cmd[64];
+
+    strcpy(cmd,"ps aux | grep -i ");
+    strcat(cmd,name);
+
+
+    FILE *fp = popen(cmd, "r" );
+
+    char buff[128];
+
+    while ( fgets( buff, sizeof buff, fp ) )
+        std::cout<<buff;
 
     pclose( fp );
 
@@ -165,6 +188,7 @@ void sysinfo::menu(){
         std::cout<<"3. List of running procceses"<<std::endl;
         std::cout<<"4. Search proccess by name"<<std::endl;
         std::cout<<"5. Kill proccess by ID"<<std::endl;
+        std::cout<<"0. Exit"<<std::endl;
 
         std::cin>>x;
 
@@ -172,12 +196,28 @@ void sysinfo::menu(){
 
         switch(x) {
 
+            case '0': {
+                 std::cout<<"Bye, Bye!";
+                 exit(1);
+                 break;
+            }
+
             case '1': {
                  cpu_detailes(); break;
             }
 
             case '3': {
                  ps_show(); break;
+            }
+
+            case '4': {
+
+                char tmp[64];
+
+                std::cout<<"Enter proccess name: ";
+                std::cin>>tmp;
+                ps_show( tmp );
+                 break;
             }
 
             default: {
