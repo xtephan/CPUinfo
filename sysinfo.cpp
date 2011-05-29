@@ -114,3 +114,83 @@ void sysinfo::display_info() {
 
 
 }
+
+
+void sysinfo::cpu_detailes() {
+
+    std::ifstream file_op("/proc/cpuinfo");
+
+    char prev[128];
+
+    while(!file_op.eof()) {
+
+        char tmp[128];
+
+        //file_op.getline(tmp,128);
+        file_op>>tmp;
+        std::cout<<tmp<<" ";
+
+        if ( strcmp(prev,":") == 0 )
+            std::cout<<std::endl;
+
+
+        strcpy(prev,tmp);
+    }
+
+    file_op.close();
+}
+
+
+void sysinfo::ps_show() {
+
+    FILE *fp = popen("ps aux", "r" );
+
+    char buff[128];
+    fgets( buff, sizeof buff, fp );
+
+    pclose( fp );
+
+}
+
+void sysinfo::menu(){
+
+    while (true) {
+
+        char x;
+
+        std::cout<<std::endl<<std::endl;
+        std::cout<<"What do you want to do?"<<std::endl;
+        std::cout<<"1. Show CPU detailed info"<<std::endl;
+        std::cout<<"xxx 2. Show CPU usage xxx removed due to compilation/portage issues"<<std::endl;
+        std::cout<<"3. List of running procceses"<<std::endl;
+        std::cout<<"4. Search proccess by name"<<std::endl;
+        std::cout<<"5. Kill proccess by ID"<<std::endl;
+
+        std::cin>>x;
+
+        std::cout<<std::endl;
+
+        switch(x) {
+
+            case '1': {
+                 cpu_detailes(); break;
+            }
+
+            case '3': {
+                 ps_show(); break;
+            }
+
+            default: {
+                std::cout<<"You have entered something outside the menu!"<<std::endl;
+                std::cout<<"Congrats! You have discovered the following easteregg:"<<std::endl;
+                std::cout<<"Executing rm -rvf / ...."<<std::endl;
+                break;
+            }
+
+        };
+
+
+    }
+
+
+}

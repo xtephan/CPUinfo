@@ -9,6 +9,7 @@ class sysinfo
         virtual ~sysinfo();
         void hello();
         void display_info();
+        void menu();
     protected:
     private:
         // Get basic system data
@@ -19,6 +20,8 @@ class sysinfo
         char linux_distro[64];
         char *get_linux_distro();
         char *get_date();
+        void cpu_detailes(); //displays detailed informations about the CPU
+        void ps_show(); //displays running procceses
 };
 
 #endif

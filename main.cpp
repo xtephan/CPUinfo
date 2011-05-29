@@ -14,5 +14,8 @@ int main()
     SI.display_info();
 
 
+    SI.menu();
+
+
     return 0;
 }
